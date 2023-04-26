@@ -10,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     // creating variables for
@@ -39,28 +43,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void extractPDF() {
         try {
-            String extractedText = "";
-
+            String extractedText = "        ";
             PdfReader reader = new PdfReader("res/raw/test_pdf.pdf");
-
-
             int n = reader.getNumberOfPages();
-
-            // running a for loop to get the data from PDF
-            // we are storing that data inside our string.
             for (int i = 0; i < n; i++) {
+
                 extractedText = extractedText + PdfTextExtractor.getTextFromPage(reader, i + 1).trim() + "\n";
-                // to extract the PDF content from the different pages
             }
 
-            // after extracting all the data we are
-            // setting that string value to our text view.
+
+ //-------------------------------
+
+//            String myArray[] = extractedText.split("\n");
+//            List myList = new ArrayList();
+//            Collections.addAll(myList, myArray);
+
+ //-------------------------------
             extractedTV.setText(extractedText);
 
-            // below line is used for closing reader.
+
+
             reader.close();
         } catch (Exception e) {
-            // for handling error while extracting the text file.
             extractedTV.setText("Error found is : \n" + e);
         }
     }
